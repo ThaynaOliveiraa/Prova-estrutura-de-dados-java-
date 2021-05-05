@@ -1,0 +1,77 @@
+public class AlgoritimoProva {
+
+    final static int[] numeros = new int[20];
+    static int maiorValor = 0;
+    static double valorMedio = 0;
+    static int valorTotal = 0;
+    static int menorValor = 0;
+    static int qtdDeNumerosMaiorQue5 = 0;
+    static int qtdDeNumerosPares = 0;
+    static int somadDeNumerosImpares = 0;
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Ola, por favor digite os 20 numeros do array.");
+        for (int i = 0; i <= numeros.length - 1; i++) {
+            System.out.println("Posicao " + i);
+            numeros[i] = scanner.nextInt();
+            scanner.nextLine();
+        }
+        executar(numeros);
+    }
+
+    public static void executar(int[] numeros){
+        for (int i = 0; i <= numeros.length - 1 ; i++) {
+            maiorValor(i, numeros);
+            mediaDosValores(i, numeros);
+            menorValor(i, numeros);
+            quantidadeDeValoresAcimaDe5(i, numeros);
+            quantidadeDeValoresPares(i, numeros);
+            somaDosValoresImpares(i, numeros);
+        }
+
+        System.out.println("Maior valor: " + maiorValor);
+        System.out.println("Valor Medio: " + valorMedio);
+        System.out.println("Menor valor: " + menorValor);
+        System.out.println("Quantidade de Valores Acima de 5: " + qtdDeNumerosMaiorQue5);
+        System.out.println("Quantidade de Numeros Pares: " + qtdDeNumerosPares);
+        System.out.println("Soma de Numeros Impares: " + somadDeNumerosImpares);
+
+    }
+
+    public static void maiorValor(int posicaoAtual, int[] numeros){
+        int posicaoSeguinte = posicaoAtual + 1;
+        if(posicaoAtual == 0){
+            maiorValor = numeros[posicaoAtual] >= numeros[posicaoSeguinte] ? numeros[posicaoAtual]  : numeros[posicaoSeguinte];
+        }else {
+            maiorValor = maiorValor >= numeros[posicaoAtual] ? maiorValor  : numeros[posicaoAtual];
+        }
+    }
+
+    public static void mediaDosValores(int posicaoAtual, int numeros[]){
+        valorTotal += numeros[posicaoAtual];
+        int fim = numeros.length -1;
+        int quantidadeDeNUmeros = numeros.length;
+        if(posicaoAtual == fim){
+            valorMedio = valorTotal / quantidadeDeNUmeros;
+        }
+    }
+
+    public static void menorValor(int posicaoAtual, int[] numeros){
+        int posicaoSeguinte = posicaoAtual + 1;
+        if(posicaoAtual == 0){
+            menorValor = numeros[posicaoAtual] <= numeros[posicaoSeguinte] ? numeros[posicaoAtual]  : numeros[posicaoSeguinte];
+        }else {
+            menorValor = menorValor <= numeros[posicaoAtual] ? menorValor  : numeros[posicaoAtual];
+        }
+    }
+    public static void quantidadeDeValoresAcimaDe5(int posicaoAtual, int[] numeros){
+        qtdDeNumerosMaiorQue5 += numeros[posicaoAtual] > 5 ? 1 : 0;
+    }
+    public static void quantidadeDeValoresPares(int posicaoAtual, int[] numeros){
+        qtdDeNumerosPares += numeros[posicaoAtual] % 2 == 0 ? 1 : 0;
+    }
+    public static void somaDosValoresImpares(int posicaoAtual, int[] numeros){
+        somadDeNumerosImpares += numeros[posicaoAtual] % 2 != 0 ? numeros[posicaoAtual] : 0;
+    }
+}
